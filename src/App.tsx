@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import './App.css';
+import { Time } from './components/Time';
 
 function App() {
+
+  const quote = useRef<HTMLElement>(null);
+  const author = useRef<HTMLElement>(null);
+
+  function getRandomQuote() {
+    const randomIdx = Math.floor(Math.random() * quotesList.length);
+    quote = quotesList[randomIdx];
+    document.querySelector('.quote').innerHTML = quote.text;
+    document.querySelector('.author').innerHTML = quote.author;
+}
+
+function onQuillClick() {
+    document.querySelector('.quill')
+        .addEventListener('mouseup', function name(params) {
+            getRandomQuote();
+        });
+}
+
+function onSocialClick() {
+    document.querySelector('.social')
+        .addEventListener('mouseup', function name(params) {
+            var tweetLink = "https://twitter.com/intent/tweet?text=" + quote.text + " - " + quote.author;
+            window.open(tweetLink);
+        });
+}
+
   return (
     <>
       <header>
-        <div className="time">
-            <span className="hour">22</span>
-            <span className="delim heart-beat">:</span>
-            <span className="min">22</span>
-        </div>
+        <Time />
       </header>
       <section>
           <div className="quill icon"></div>
