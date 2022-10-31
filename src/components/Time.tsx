@@ -1,8 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Time: React.FC = () => {
 
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
   
   const date = new Date();
   const nextMinute = date.getMinutes();
